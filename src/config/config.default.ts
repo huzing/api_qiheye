@@ -9,11 +9,20 @@ export default (appInfo: MidwayAppInfo) => {
     },
     credentials: true,
     allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
+    // orm: {
+    //   type: 'mysql',
+    //   host: 'localhost',
+    //   port: 3306,
+    //   username: 'root',
+    //   password: 123456,
+    //   database: 'qiheye',
+    //   synchronize: false,
+    //   logging: 'all',
+    //   maxQueryExecutionTime: 1000,
+    // },
     security: {
+      csrf: false,
       domainWhiteList: ['localhost', 'huzing.cn'],
     },
-    // security: {
-    //   csrf: false,
-    // },
   } as MidwayConfig;
 };

@@ -1,6 +1,13 @@
-import { Inject, Controller, Post, Query } from '@midwayjs/core';
+import {
+  Inject,
+  Controller,
+  Post,
+  Query,
+  Get,
+  Body,
+} from '@midwayjs/decorator';
 import { Context } from '@midwayjs/web';
-import { IGetUserResponse } from '../interface';
+import { IBaseResponse, IUserOptions } from '../interface';
 import { UserService } from '../service/user';
 
 @Controller('/api')
@@ -11,9 +18,24 @@ export class APIController {
   @Inject()
   userService: UserService;
 
-  @Post('/get_user')
-  async getUser(@Query('uid') uid: string): Promise<IGetUserResponse> {
-    const user = await this.userService.getUser({ uid });
+  @Get('/get_user')
+  async getUser(@Query('id') id: number): Promise<IBaseResponse<IUserOptions>> {
+    const user = await this.userService.getUser({ id });
     return { success: true, message: 'OK', data: user };
+  }
+
+  @Post('/add_user')
+  async addUser(
+    @Body() body: Omit<IUserOptions, 'id'>
+  ): Promise<IBaseResponse<string>> {
+    if (!body || !body.nickname || !body.password) {
+      return {
+        success: false,
+        message: 'ERROR',
+        data: '用户名与密码不能为空!!',
+      };
+    }
+
+    return { success: true, message: 'OK', data: 'user' };
   }
 }

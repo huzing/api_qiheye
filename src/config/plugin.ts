@@ -1,4 +1,5 @@
 import { EggPlugin } from 'egg';
+import 'reflect-metadata';
 export default {
   // static: false,
   cors: {

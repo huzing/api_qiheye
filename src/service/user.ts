@@ -3,9 +3,17 @@ import { IUserOptions } from '../interface';
 
 @Provide()
 export class UserService {
-  async getUser(options: IUserOptions) {
+  async getUser(options: Pick<IUserOptions, 'id'>): Promise<IUserOptions> {
     return {
-      uid: options.uid,
+      id: options.id,
+      nickname: 'mockedName',
+      password: '',
+    };
+  }
+
+  async addUser(options: IUserOptions) {
+    return {
+      uid: options.id,
       username: 'mockedName',
       phone: '12345678901',
       email: 'xxx.xxx@xxx.com',

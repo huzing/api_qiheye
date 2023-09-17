@@ -1,12 +1,15 @@
 /**
  * @description User-Service parameters
  */
-export interface IUserOptions {
-  uid: string;
-}
 
-export interface IGetUserResponse {
+export interface IBaseResponse<T> {
   success: boolean;
   message: string;
-  data: IUserOptions;
+  data: T;
+}
+
+export interface IUserOptions {
+  id: number;
+  nickname: string;
+  password: string;
 }

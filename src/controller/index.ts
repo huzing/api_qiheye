@@ -1,10 +1,10 @@
-import { Controller, Get, Post } from '@midwayjs/core';
+import { Controller, Get, Post } from '@midwayjs/decorator';
 
 @Controller('/')
 export class HomeController {
   @Get('/')
   @Post('/')
   async home() {
-    return 'Hello Midwayjs!';
+    return '你好呀 QIHEYE!';
   }
 }
