@@ -1,7 +1,7 @@
 import { EggPlugin } from 'egg';
-import 'reflect-metadata';
 export default {
-  // static: false,
+  logrotator: false, // disable when use @midwayjs/logger
+  static: false,
   cors: {
     enable: true,
     package: 'egg-cors',
