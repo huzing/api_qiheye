@@ -1,7 +1,16 @@
 import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
 import { ConnectionOptions } from 'typeorm';
+import { bindEnv } from '../biz-config/env';
 
 export type DefaultConfig = PowerPartial<EggAppConfig>;
+
+/**
+ * Place dotenv here.
+ *
+ * @link https://eggjs.org/en/advanced/loader.html#file-order
+ * @link https://github.com/eggjs/egg/issues/3958
+ */
+bindEnv();
 
 export default (appInfo: EggAppInfo) => {
   const config = {} as DefaultConfig;
