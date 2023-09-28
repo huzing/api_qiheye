@@ -1,4 +1,4 @@
-# my-midway-project
+# api-qiheye
 
 ## QuickStart
 
@@ -11,7 +11,7 @@ see [midway docs][midway] for more detail.
 ```bash
 $ npm i
 $ npm run dev
-$ open http://localhost:7001/
+$ open http://localhost:9188/
 ```
 
 ### Deploy
@@ -25,6 +25,5 @@ $ npm stop
 
 - Use `npm run lint` to check code style.
 - Use `npm test` to run unit test.
-
 
 [midway]: https://midwayjs.org
