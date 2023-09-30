@@ -34,12 +34,12 @@ export default (appInfo: EggAppInfo) => {
 
   config.orm = {
     type: 'mysql',
-    host: 'localhost', // 主机
-    port: 3306, // 端口
-    username: 'root', // 用户名
-    password: 'admin123', // 密码
-    database: 'qiheye', // 数据库
-    synchronize: true, // 是否同步 ； 正式环境 不要打开， 因为 它会干掉你的数据 // 如果第一次使用，不存在表，有同步的需求可以写 true
+    host: global.QIHEYE_ENV.QHY_MYSQL_HOST, // 主机
+    port: global.QIHEYE_ENV.QHY_MYSQL_PORT, // 端口
+    username: global.QIHEYE_ENV.QHY_MYSQL_USERNAME, // 用户名
+    password: global.QIHEYE_ENV.QHY_MYSQL_PASSWORD, // 密码
+    database: global.QIHEYE_ENV.QHY_MYSQL_DATABASE, // 数据库
+    synchronize: global.QIHEYE_ENV.QHY_TYPEORM_SYNC, // 是否同步 ； 正式环境 不要打开， 因为 它会干掉你的数据 // 如果第一次使用，不存在表，有同步的需求可以写 true
     logging: 'all',
     maxQueryExecutionTime: 1000,
   } as ConnectionOptions;
