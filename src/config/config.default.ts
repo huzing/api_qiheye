@@ -46,7 +46,7 @@ export default (appInfo: EggAppInfo) => {
 
   config.security = {
     csrf: false,
-    domainWhiteList: ['localhost', 'huzing.cn'],
+    domainWhiteList: ['localhost', 'www.huzing.cn'],
   };
 
   return config;
