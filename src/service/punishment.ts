@@ -48,10 +48,10 @@ export class PunishmentRecordService {
       }
 
       if (
-        data.listen === 120 &&
-        data.reciteWords === 30 &&
-        data.exercise === 30 &&
-        data.reciteBooks === 20
+        data.listen >= 120 &&
+        data.reciteWords >= 30 &&
+        data.exercise >= 30 &&
+        data.reciteBooks >= 20
       ) {
         total -= 20;
         kneel -= 4;
