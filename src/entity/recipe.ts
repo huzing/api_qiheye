@@ -1,6 +1,7 @@
 import { EntityModel } from '@midwayjs/orm';
 import { Column, PrimaryGeneratedColumn } from 'typeorm';
 import { EDishesType } from '../dict/recipe';
+// import { NoUpdateEntity } from './base';
 
 @EntityModel()
 export class Recipe {

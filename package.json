@@ -15,6 +15,9 @@
     "egg-cors": "^2.2.3",
     "egg-scripts": "^2.10.0",
     "mysql2": "^2.3.3",
+    "numeral": "^2.0.6",
+    "dayjs": "~1.11.7",
+    "lodash": "^4.17.21",
     "typeorm": "^0.2.41"
   },
   "devDependencies": {

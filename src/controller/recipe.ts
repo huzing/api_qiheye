@@ -16,7 +16,7 @@ import { Recipe } from '../entity/recipe';
 
 @Provide()
 @Controller('/recipe')
-export class APIController {
+export class RecipeController {
   @Inject()
   ctx: Context;
 
