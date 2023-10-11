@@ -11,23 +11,21 @@ export class PunishmentRecordService {
     const data = await this._photoModel.findRecord();
 
     // 使用dayjs解析Unix时间戳
-    const date1 = dayjs.unix(data.updatedAt);
-    const date2 = dayjs();
+    const saveDate = dayjs.unix(data.updatedAt);
+    // 获取当前日期
+    const currentDate = dayjs();
 
-    // 计算两个日期之间的差异
-    const diffInDays = date2.diff(date1, 'day');
+    // 使用 isSame 方法检查两个日期是否相同
+    const isSameDate = currentDate.isSame(saveDate, 'day');
 
-    if (diffInDays > 1) {
-      return this.updateRecord({
-        ...data,
-        reciteBooks: 0,
-        reciteWords: 0,
-        exercise: 0,
-        listen: 0,
-        kneel: data.kneel + (diffInDays - 1) * 5,
-        total: data.total + (diffInDays - 1) * 80,
-      });
-    } else if (diffInDays === 1) {
+    //当天就不操作
+    if (isSameDate) return data;
+
+    // 计算时间戳日期是否在当前日期之前，并且相差一天
+    const isYesterday = saveDate.isBefore(currentDate, 'day');
+
+    //如果是昨天
+    if (isYesterday) {
       let total = data.total;
       let kneel = data.kneel;
       if (data.listen < 120) {
@@ -57,7 +55,7 @@ export class PunishmentRecordService {
         kneel -= 4;
       }
 
-      return this.updateRecord({
+      return await this.updateRecord({
         ...data,
         reciteBooks: 0,
         reciteWords: 0,
@@ -66,9 +64,20 @@ export class PunishmentRecordService {
         kneel: kneel,
         total: total,
       });
-    }
+    } else {
+      //如果是昨天以前，计算两个日期之间的差异
+      const diffInDays = currentDate.diff(saveDate, 'day');
 
-    return data;
+      return await this.updateRecord({
+        ...data,
+        reciteBooks: 0,
+        reciteWords: 0,
+        exercise: 0,
+        listen: 0,
+        kneel: data.kneel + (diffInDays - 1) * 5,
+        total: data.total + (diffInDays - 1) * 80,
+      });
+    }
   }
 
   async updateRecord(options: PunishmentRecord) {
