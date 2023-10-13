@@ -90,8 +90,8 @@ export class PunishmentRecordService {
       exercise: options.exercise ?? 0,
       listen: options.listen ?? 0,
       updatedAt: nowDate,
-      total: saveData.total,
-      kneel: saveData.kneel,
+      total: options.total ?? saveData.total,
+      kneel: options.kneel ?? saveData.kneel,
     });
   }
 }
